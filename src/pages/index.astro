@@ -1,12 +1,42 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 ---
 
 <Layout title="Walter Palavecino">
 	<main>
 		<h1>Walter Palavecino</h1>
-		<p class="instructions"></p>
+		<p class="instructions">
+			<h2>
+				me presento soy Walter Palavecino y esta es mi primera pagina
+				creada para poder aprobar este taller
+			</h2>
+		</p>
+		<ul role="list" class= "grid-card">
+		<Card
+		href= "https://facebook.com"
+		title= "facebook"
+		body= "facebook" 
+		/>
+		<Card
+		href= "https://youtube.com"
+		title= "youtube"
+		body= "youtube" 
+		/>
+		</ul>
 	</main>
 </Layout>
-
-<style></style>
+<style>
+.grid-card{
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     grid-gap: 10px;
+     max-width: 768px;
+}
+	h1 {
+		text-align: center;
+	}
+	h2 {
+		text-align: center;
+	}
+</style>
