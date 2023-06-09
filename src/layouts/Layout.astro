@@ -18,9 +18,13 @@ const { title } = Astro.props as Props;
 	<body>
 		<header>
 			<nav id="navbar">
-				<div><img src="/descarga1.png" width="100px" /></div>
+				<!--creo un contenedor -->
+				<div>
+					<img src="/descarga1.png" width="100px" />
+				</div><!--coloco una imagen-->
 
 				<div id="hamburger">
+					<!--pongo el codigo pra la hamburguesa-->
 					<div>
 						<button class="relative group">
 							<div
@@ -47,13 +51,18 @@ const { title } = Astro.props as Props;
 					</div>
 				</div>
 				<div id="menu">
+					<!--creo un contenedor -->
 					<a href="inicio">inicio</a>
-					<a href="sobremi">sobre mi</a>
-					<a href="contacto">contacto</a>
+					<!--es la direccion donde va la url-->
+					<a href="sobremi">sobre mi</a
+					><!--es la direccion donde va la url-->
+					<a href="contacto">contacto</a
+					><!--es la direccion donde va la url-->
 				</div>
 			</nav>
 		</header>
 		<div class="contenedor">
+			<!--define una clase generica que puede ser usada por varios elementos-->
 			<div class="content">
 				<slot />
 			</div>
@@ -62,29 +71,31 @@ const { title } = Astro.props as Props;
 </html>
 <style>
 	.contenedor {
-		display: flex;
-		justify-content: center;
+		display: flex; /*forma en que los elementos se muestran en pantalla,variando en su tipo(flex,none,etc.)*/
+		justify-content: center; /*determina el modo en que los elementos se acomodan en la pagina*/
 		width: 100%;
 	}
 	.content {
+		/*selecciona las clases*/
 		max-width: 768px;
 	}
 	body {
 		background-color: black;
 		color: aqua;
-		width: 100%;
+		width: 100%;/*determina el ancho que ocupan los elementos del contenedor*/
 	}
 	#navbar {
+		/*selecciona los contenedores*/
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: wrap; /*especifica si los elementos "hijos" son obligados a permanecer en una misma línea o pueden fluir en varias líneas*/
 		justify-content: space-between;
-		align-items: center;
-		background-color: aqua;
-		color: black;
+		align-items: center; /*alinea los elementos dento del contenedor*/
+		background-color: aqua; /*cambia el color del margen*/
+		color: black; /*cambia el color de las letras*/
 		padding: 5px 20px; /*margen X e Y*/
 	}
 	#menu {
-		flex-direction: column;
+		flex-direction: column;/*determina la dirección en que se ordenarán los elementos en el espacio*/
 		display: none;
 		width: 100%;
 		justify-content: center;
@@ -120,5 +131,5 @@ const { title } = Astro.props as Props;
 			menu.style.display = "none";
 		}
 	}
-	burger.addEventListener("click", burgerClick);
+	burger.addEventListener("click", burgerClick); /*hamburger*/
 </script>
