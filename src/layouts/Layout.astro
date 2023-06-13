@@ -82,7 +82,7 @@ const { title } = Astro.props as Props;
 	body {
 		background-color: black;
 		color: aqua;
-		width: 100%;/*determina el ancho que ocupan los elementos del contenedor*/
+		width: 100%; /*determina el ancho que ocupan los elementos del contenedor*/
 	}
 	#navbar {
 		/*selecciona los contenedores*/
@@ -95,7 +95,7 @@ const { title } = Astro.props as Props;
 		padding: 5px 20px; /*margen X e Y*/
 	}
 	#menu {
-		flex-direction: column;/*determina la dirección en que se ordenarán los elementos en el espacio*/
+		flex-direction: column; /*determina la dirección en que se ordenarán los elementos en el espacio*/
 		display: none;
 		width: 100%;
 		justify-content: center;
@@ -122,14 +122,14 @@ const { title } = Astro.props as Props;
 	}
 </style>
 <script is:inline>
-	const burger = document.getElementById("hamburger");
-	function burgerClick() {
-		const menu = document.getElementById("menu");
-		if (menu.style.display === "none") {
-			menu.style.display = "flex";
-		} else {
-			menu.style.display = "none";
-		}
+const burger = document.getElementById("hamburger");
+function burgerClick() {
+	const menu = document.getElementById("menu");
+	if (window.getComputedStyle(menu).display === "none") {
+		menu.style.display = "flex";
+	} else {
+		menu.style.display = "none";
 	}
-	burger.addEventListener("click", burgerClick); /*hamburger*/
+}
+burger.addEventListener("click", burgerClick); /*hamburger*/
 </script>
