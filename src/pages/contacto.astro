@@ -16,8 +16,40 @@ import Layout from "../layouts/Layout.astro";
                 <img src="/youtube logo.png" />
             </a>
         </div>
+        <form class="columna" id="formulario">
+            <div class="fila">
+                <div class="columna">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" />
+                </div>
+                <div class="columna">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" />
+                </div>
+            </div>
+            <div class="columna">
+                <label for="email">Email</label>
+                <input type="text" id="email" />
+            </div>
+
+            <input type="submit" />
+        </form>
     </main>
     <style>
+        #formulario {
+            max-width: 480px;
+        }
+        .columna {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .fila {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
         h1 {
             text-align: center;
         }
