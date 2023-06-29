@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="contacto">
-    <main>
+    <main class="flex flex-col justify-center items-center">
         <h1>Contactos</h1>
         <div id="logos">
             <a href="https://facebook.com">
@@ -16,28 +16,35 @@ import Layout from "../layouts/Layout.astro";
                 <img src="/youtube logo.png" />
             </a>
         </div>
-        <form class="columna" id="formulario">
-            <div class="fila">
-                <div class="columna">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" />
+        <div class="form-container">
+            <form method="post" class="columna" id="contact">
+                <div class="fila">
+                    <div class="columna">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" />
+                    </div>
+                    <div class="columna">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" />
+                    </div>
                 </div>
                 <div class="columna">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" id="apellido" />
+                    <label for="email">Email</label>
+                    <input type="text" id="email" />
                 </div>
-            </div>
-            <div class="columna">
-                <label for="email">Email</label>
-                <input type="text" id="email" />
-            </div>
 
-            <input type="submit" />
-        </form>
+                <input type="submit" />
+            </form>
+        </div>
     </main>
     <style>
-        #formulario {
+        .form-container {
             max-width: 480px;
+            display: flex;
+            justify-content: center;
+        }
+        #formulario {
+            width: 100%;
         }
         .columna {
             display: flex;
@@ -60,3 +67,21 @@ import Layout from "../layouts/Layout.astro";
         }
     </style>
 </Layout>
+
+<script is:inline>
+const form = document.getElementById("contact");
+form.addEventListener("submit", (event) => {
+    // stop form submission
+    event.preventDefault();
+
+    const name = form.elements.nombre;
+    const apellido = form.elements["apellido"];
+    if (name.value === "") {
+        name.style.borderColor = "red";
+        name.style.borderWidth = "1px";
+        alert("pone algo mogolico");
+    } else {
+        alert("se envio " + name.value + " " + apellido.value);
+    }
+});
+</script>
