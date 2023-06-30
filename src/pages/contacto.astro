@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "@astrojs/image/components";
+const face = "../../public/facebook imagen.png";
 ---
 
 <Layout title="contacto">
@@ -7,13 +9,31 @@ import Layout from "../layouts/Layout.astro";
         <h1>Contactos</h1>
         <div id="logos">
             <a href="https://facebook.com">
-                <img src="/logo face.png" />
+                <Image
+                    src={face}
+                    alt="facebook"
+                    format="webp"
+                    width={40}
+                    height={40}
+                />
             </a>
             <a href="https://instagram.com">
-                <img src="/logo inst.jpeg" />
+                <Image
+                    src="/instagram imagen.png"
+                    alt="facebook"
+                    format="png"
+                    width={40}
+                    height={40}
+                />
             </a>
             <a href="https://youtube.com">
-                <img src="/youtube logo.png" />
+                <Image
+                    src="/youtube imagen.png"
+                    alt="facebook"
+                    format="png"
+                    width={60}
+                    height={40}
+                />
             </a>
         </div>
         <div class="form-container">
@@ -21,16 +41,39 @@ import Layout from "../layouts/Layout.astro";
                 <div class="fila">
                     <div class="columna">
                         <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" />
+                        <input
+                            class="input"
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                        />
                     </div>
                     <div class="columna">
                         <label for="apellido">Apellido</label>
-                        <input type="text" id="apellido" name="apellido" />
+                        <input
+                            class="input"
+                            type="text"
+                            id="apellido"
+                            name="apellido"
+                        />
                     </div>
                 </div>
                 <div class="columna">
                     <label for="email">Email</label>
-                    <input type="text" id="email" />
+                    <input
+                        class="input"
+                        type="email"
+                        id="email"
+                        placeholder="ingrese mail"
+                    />
+                </div>
+                <div class="columna">
+                    <label for="mensaje">Mensaje</label>
+                    <input class="letras" type="text" id="mensaje" />
+                </div>
+                <div class="columna">
+                    <label for="asunto">Asunto</label>
+                    <input class="letras" type="text" id="asunto" />
                 </div>
 
                 <input type="submit" />
@@ -65,6 +108,12 @@ import Layout from "../layouts/Layout.astro";
             justify-content: center;
             margin: 100px;
         }
+        .input {
+            background-color: gray;
+        }
+        .letras {
+            color: black;
+        }
     </style>
 </Layout>
 
@@ -73,15 +122,25 @@ const form = document.getElementById("contact");
 form.addEventListener("submit", (event) => {
     // stop form submission
     event.preventDefault();
-
-    const name = form.elements.nombre;
-    const apellido = form.elements["apellido"];
-    if (name.value === "") {
-        name.style.borderColor = "red";
-        name.style.borderWidth = "1px";
-        alert("pone algo mogolico");
-    } else {
-        alert("se envio " + name.value + " " + apellido.value);
+    let valido = true;
+    console.log(form.elements);
+    for (i = 0; i < form.elements.length; i = i + 1) {
+        const elementoSeleccionado = form.elements[i];
+        console.log(elementoSeleccionado);
+        if (
+            elementoSeleccionado.value === "" &&
+            elementoSeleccionado.type !== "submit" &&
+            elementoSeleccionado.id !== "mensaje" &&
+            elementoSeleccionado.id !== "asunto"
+        ) {
+            valido = false;
+            elementoSeleccionado.style.borderColor = "red";
+            elementoSeleccionado.style.borderWidth = "1px";
+        } else {
+            elementoSeleccionado.style.borderColor = "none";
+            elementoSeleccionado.style.borderWidth = "0px";
+        }
     }
+    if (!valido) alert("complete los campos vacios antes de enviar");
 });
 </script>
