@@ -12,7 +12,7 @@ const face = "../../public/facebook imagen.png";
                 <Image
                     src={face}
                     alt="facebook"
-                    format="webp"
+                    closeat="webp"
                     width={40}
                     height={40}
                 />
@@ -76,62 +76,82 @@ const face = "../../public/facebook imagen.png";
                     <input class="letras" type="text" id="asunto" />
                 </div>
 
-                <input type="submit" />
+                <button
+                    value="Enviar"
+                    class="bg-orange-400 p-2 my-2 w-20"
+                    type="submit"
+                >
+                    Enviar</button
+                >
             </form>
         </div>
+        <dialog id="popuFallo">
+            complete los campos
+            <button
+                id="cancelFallo"
+                type="reset"
+                value="cerrar"
+                class="bg-orange-400 p-2 my-2 w-20"
+            >
+                X</button
+            >
+        </dialog>
+        <div popover id="popover">Mensaje Exitoso</div>
     </main>
-    <style>
-        .form-container {
-            max-width: 480px;
-            display: flex;
-            justify-content: center;
-        }
-        #formulario {
-            width: 100%;
-        }
-        .columna {
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .fila {
-            display: flex;
-            flex-direction: row;
-            gap: 8px;
-        }
-        h1 {
-            text-align: center;
-        }
-        #logos {
-            display: flex;
-            justify-content: center;
-            margin: 100px;
-        }
-        .input {
-            background-color: gray;
-        }
-        .letras {
-            color: black;
-        }
-    </style>
 </Layout>
-
+<style>
+    .form-container {
+        max-width: 480px;
+        display: flex;
+        justify-content: center;
+    }
+    #formulario {
+        width: 100%;
+    }
+    .columna {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .fila {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+    h1 {
+        text-align: center;
+    }
+    #logos {
+        display: flex;
+        justify-content: center;
+        margin: 100px;
+    }
+    .input {
+        background-color: gray;
+    }
+    .letras {
+        color: black;
+    }
+</style>
 <script is:inline>
 const form = document.getElementById("contact");
+const popuFallo = document.getElementById("popuFallo");
 form.addEventListener("submit", (event) => {
     // stop form submission
     event.preventDefault();
-    let valido = true;
+
+    const popover = document.getElementById("popover");
+    const inputs = form.elements;
+    let nombre = inputs.nombre.value;
     console.log(form.elements);
+    let valido = true;
     for (i = 0; i < form.elements.length; i = i + 1) {
         const elementoSeleccionado = form.elements[i];
         console.log(elementoSeleccionado);
         if (
             elementoSeleccionado.value === "" &&
-            elementoSeleccionado.type !== "submit" &&
-            elementoSeleccionado.id !== "mensaje" &&
-            elementoSeleccionado.id !== "asunto"
+            elementoSeleccionado.type !== "submit"
         ) {
             valido = false;
             elementoSeleccionado.style.borderColor = "red";
@@ -141,6 +161,13 @@ form.addEventListener("submit", (event) => {
             elementoSeleccionado.style.borderWidth = "0px";
         }
     }
-    if (!valido) alert("complete los campos vacios antes de enviar");
+    if (!valido) popuFallo.showModal();
+    if (valido) {
+        popover.showPopover();
+    }
 });
+const cancelFallo = document.getElementById("cancelFallo");
+cancelFallo.addEventListener("click", function () {
+    popuFallo.close();
+    });
 </script>
