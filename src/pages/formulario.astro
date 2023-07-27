@@ -37,7 +37,7 @@ const face = "../../public/facebook imagen.png";
             </a>
         </div>
         <div class="form-container">
-            <form method="post" class="columna" id="contact">
+            <form action="https://formsubmit.co/palavecinowalter14@gmail.com" method="post" class="columna" id="contact">
                 <div class="fila">
                     <div class="columna">
                         <label for="nombre">Nombre</label>
@@ -65,15 +65,16 @@ const face = "../../public/facebook imagen.png";
                         type="email"
                         id="email"
                         placeholder="ingrese mail"
+                        name= "email"
                     />
                 </div>
                 <div class="columna">
                     <label for="mensaje">Mensaje</label>
-                    <input class="letras" type="text" id="mensaje" />
+                    <input class="letras" type="text" id="mensaje" name= "mensaje" />
                 </div>
                 <div class="columna">
                     <label for="asunto">Asunto</label>
-                    <input class="letras" type="text" id="asunto" />
+                    <input class="letras" type="text" id="asunto" name="asunto" />
                 </div>
 
                 <button
@@ -134,40 +135,3 @@ const face = "../../public/facebook imagen.png";
         color: black;
     }
 </style>
-<script is:inline>
-const form = document.getElementById("contact");
-const popuFallo = document.getElementById("popuFallo");
-form.addEventListener("submit", (event) => {
-    // stop form submission
-    event.preventDefault();
-
-    const popover = document.getElementById("popover");
-    const inputs = form.elements;
-    let nombre = inputs.nombre.value;
-    console.log(form.elements);
-    let valido = true;
-    for (i = 0; i < form.elements.length; i = i + 1) {
-        const elementoSeleccionado = form.elements[i];
-        console.log(elementoSeleccionado);
-        if (
-            elementoSeleccionado.value === "" &&
-            elementoSeleccionado.type !== "submit"
-        ) {
-            valido = false;
-            elementoSeleccionado.style.borderColor = "red";
-            elementoSeleccionado.style.borderWidth = "1px";
-        } else {
-            elementoSeleccionado.style.borderColor = "none";
-            elementoSeleccionado.style.borderWidth = "0px";
-        }
-    }
-    if (!valido) popuFallo.showModal();
-    if (valido) {
-        popover.showPopover();
-    }
-});
-const cancelFallo = document.getElementById("cancelFallo");
-cancelFallo.addEventListener("click", function () {
-    popuFallo.close();
-});
-</script>
